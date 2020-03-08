@@ -19,7 +19,7 @@ app.use(routes);
 // Route params: req.params (identificar um recurso na alteracao ou remocao)
 // Body:  req.bot ((dados pra criacao ou alteracao de um registro)
 
-
+//If you are considering hire me, please do it. I'm pretty sure that I'll do my best to anchieve the supposed goals. 
 
 app.listen(3333);
 

@@ -17,7 +17,7 @@ app.use(routes);
 // METODOS HTTP -> GET, POST, PUT, DELETE
 // Query Params: req.query  (Filtros, ordenacao, paginacao, ...)
 // Route params: req.params (identificar um recurso na alteracao ou remocao)
-// Body:  req.bot ((dados pra criacao ou alteracao de um registro )
+// Body:  req.bot ((dados pra criacao ou alteracao de um registro)
 
 
 

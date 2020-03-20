@@ -15,11 +15,11 @@ import './Main.css';
   
 
 function App() {
-
+  const [github_username, setGithubUsername] = useState('');
+  const [techs, setTechs] = useState(''); 
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [github_username, setGithub_Username] = useState('');
-  const [techs, setTechs] = useState('');
+  
   
 
   useEffect(() => {
@@ -42,6 +42,7 @@ function App() {
 
 
   async function handdleAddDev(e) {
+    console.log(e);
     e.preventDefault();
 
     const response = await api.post('/devs', {
@@ -66,7 +67,7 @@ function App() {
             name="github_username" 
             id="github_username" 
             required value={github_username}
-            onChage={e=>setGithub_Username(e.target.value)} 
+            onChange={e=>setGithubUsername(e.target.value)} 
             />
           </div>
 
@@ -76,7 +77,7 @@ function App() {
             name="techs" 
             id="techs" 
             required value={techs}
-            onChage={e => setTechs(e.target.value)}
+            onChange={e => setTechs(e.target.value)}
             /> 
           </div>
 
@@ -89,7 +90,7 @@ function App() {
                 name="latitude" 
                 id="latitude" 
                 required value={latitude}
-                onChage={e => setLatitude(e.target.value)} 
+                onChange={e => setLatitude(e.target.value)} 
                 /> 
               </div>
 
@@ -100,7 +101,7 @@ function App() {
                 name="longitude" 
                 id="longitude" 
                 required value={longitude} 
-                onChage={e => setLongitude(e.target.value)}
+                onChange={e => setLongitude(e.target.value)}
                 /> 
               </div>
             </div>

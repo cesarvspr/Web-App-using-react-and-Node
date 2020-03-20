@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose'); 
-const routes = require('./routes.js')
+const routes = require('./routes')
+const cors = require('cors')
 
 const app = express();
 mongoose.connect('mongodb+srv://cesao:adminzao@cluster0-prdnb.mongodb.net/week10?retryWrites=true&w=majority', 
@@ -9,7 +10,7 @@ mongoose.connect('mongodb+srv://cesao:adminzao@cluster0-prdnb.mongodb.net/week10
     },   
                  );
 
-
+app.use(cors());
 app.use(express.json())
 app.use(routes);
 

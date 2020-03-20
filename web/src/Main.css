@@ -17,7 +17,7 @@ main ul {
 }
 
 li.dev-item {
-    background: #FFF;
+    background: rgb(14, 14, 14);
     box-shadow: 0 0 14px 0 rgba(red, green, blue, 0.02);
     border-radius: 10px;
     padding: 30px 20px;   
@@ -44,16 +44,16 @@ li.dev-item header .user-info {
 .user-info strong {
     display: block;
     font-size:  16px;
-    color: #333         
+    color: rgb(224, 222, 222)         
 }
 .user-info span {
     font-size:  13px;
-    color: #999;
+    color: rgb(199, 199, 199);
     margin-top: 2px; 
 }
 
 li.dev-item p {
-    color: #666;
+    color: rgb(252, 252, 252);
     font-size: 14px;
     line-height: 20px;
     margin: 10px 0px;
@@ -61,11 +61,12 @@ li.dev-item p {
 
 
 li.dev-item a {
-    color: #8e4dff;
+    color: #7c47d6;
     font-size: 14px;
     text-decoration: none;
+    font-style: italic;
 }
 
 li.dev-item a:hover {
-    color: #5a2ea6;
+    color: #f3f3f3;
 }

@@ -55,7 +55,7 @@ aside form button[ type = submit ]{
     width: 100%;
     border: 0;
     margin-top: 30px;
-    background: rgba(33, 111, 228, 0.87);
+    background: #5a24b8;
     border-radius: 25px;
     padding: 15px 20px;
     font-weight: bold;
@@ -66,5 +66,5 @@ aside form button[ type = submit ]{
 }
 
 aside form button[type=submit]:hover{
-    background:rgba(50, 123, 233, 0.87);
+    background:#7c47d6;
 }

@@ -13,7 +13,7 @@ mongoose.connect('mongodb+srv://cesao:adminzao@cluster0-prdnb.mongodb.net/week10
 app.use(cors());
 app.use(express.json())
 app.use(routes);
-
+//
 
 // METODOS HTTP -> GET, POST, PUT, DELETE
 // Query Params: req.query  (Filtros, ordenacao, paginacao, ...)

@@ -40,7 +40,7 @@ function App() {
 
     const response = await api.post('/devs', data)
 
-    setDevs([...devs, response.data]); //Atualizada a pagina caso seja adicionado um novo usuario 
+    setDevs([...devs, response.data]); //Atualizada a pagina caso seja adicionado um novo usuario
   }
 
 

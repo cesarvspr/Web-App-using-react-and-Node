@@ -5,7 +5,8 @@ import './global.css';
 import './App.css';
 import './Sidebar.css';
 import './Main.css';
-
+import DevItem from './components/DevItem';
+import DevForm from './components/DevForm';
 
 // componente : bloco isolado de HTML CSS e JS q nao interfere no restante da aplicacao 
 // estado: infromacoes mantidas pelo componente (lembrar imutabilidade)
@@ -15,43 +16,31 @@ import './Main.css';
   
 
 function App() {
-  const [github_username, setGithubUsername] = useState('');
-  const [techs, setTechs] = useState(''); 
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+
   
   
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude} = position.coords;
-        setLatitude(latitude);
-        setLongitude(longitude);
+  const [devs, setDevs] = useState([]);
 
-      },
-      (err) => {
-        console.log(err);
-      },  
-      {
-        timeout: 30000,
-      }
-    )
-  }, []
-  );
+  useEffect(() =>  {
+    async function loadDevs() {
+      const response = await  api.get('/Devs');
+      setDevs(response.data);
+    }
+  loadDevs();
+  }, []);
 
 
-  async function handdleAddDev(e) {
-    console.log(e);
-    e.preventDefault();
 
-    const response = await api.post('/devs', {
-      github_username,
-      techs,
-      latitude,
-      longitude,
-    })
-  console.log(response.data);    
+
+
+  async function handdleAddDev(data) {
+    
+
+
+    const response = await api.post('/devs', data)
+
+    setDevs([...devs, response.data]); //Atualizada a pagina caso seja adicionado um novo usuario 
   }
 
 
@@ -60,114 +49,20 @@ function App() {
     <div id="app">
        <aside>
          <strong>Create account</strong>
-         <form>
-          <div className= "input-block">
-            <label htmlFor="github_username">GitHub user</label>
-            <input 
-            name="github_username" 
-            id="github_username" 
-            required value={github_username}
-            onChange={e=>setGithubUsername(e.target.value)} 
-            />
-          </div>
-
-          <div className= "input-block">
-            <label htmlFor="techs">Techs</label>
-            <input 
-            name="techs" 
-            id="techs" 
-            required value={techs}
-            onChange={e => setTechs(e.target.value)}
-            /> 
-          </div>
-
-
-            <div className="input-group">
-              <div className= "input-block">
-                <label htmlFor="latitude">latitude</label>
-                <input 
-                type="number" 
-                name="latitude" 
-                id="latitude" 
-                required value={latitude}
-                onChange={e => setLatitude(e.target.value)} 
-                /> 
-              </div>
-
-              <div className= "input-block">
-                <label htmlFor="longitude">longitude</label>
-                <input 
-                type="number" 
-                name="longitude" 
-                id="longitude" 
-                required value={longitude} 
-                onChange={e => setLongitude(e.target.value)}
-                /> 
-              </div>
-            </div>
-            <button type="submit">Save</button>
-          
-          </form>
+         <DevForm onSubmit={handdleAddDev}/>
+         
       </aside>
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/37849741?s=460&v=4" alt="cesao" />
-              <div className="user-info">
-                <strong>CESAO </strong>
-                <span>ReactJS, IA, STONKS</span>
-              </div> 
-            </header>
-                <p>minha bio bio bio bio bio bio bio</p>
-                <a href="https://github.com/cesarvspr">Acess GitHub profile</a>
-
-                
-          </li>
+          {devs.map( dev => (          
+              <DevItem  key = {devs._id}  dev = { dev }/>
+          ))}
 
 
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/37849741?s=460&v=4" alt="cesao" />
-              <div className="user-info">
-                <strong>CESAO </strong>
-                <span>ReactJS, IA, STONKS</span>
-              </div> 
-            </header>
-                <p>minha bio bio bio bio bio bio bio</p>
-                <a href="https://github.com/cesarvspr">Acess GitHub profile</a>
 
-                
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/37849741?s=460&v=4" alt="cesao" />
-              <div className="user-info">
-                <strong>CESAO </strong>
-                <span>ReactJS, IA, STONKS</span>
-              </div> 
-            </header>
-                <p>minha bio bio bio bio bio bio bio</p>
-                <a href="https://github.com/cesarvspr">Acess GitHub profile</a>
-
-                
-          </li>
-    
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/37849741?s=460&v=4" alt="cesao" />
-              <div className="user-info">
-                <strong>CESAO </strong>
-                <span>ReactJS, IA, STONKS</span>
-              </div> 
-            </header>
-                <p>minha bio bio bio bio bio bio bio</p>
-                <a href="https://github.com/cesarvspr">Acess GitHub profile</a>
-
-                
-          </li>
-
+          
+        
+         
 
         </ul>
       </main>
